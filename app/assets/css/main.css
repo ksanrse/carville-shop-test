@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+
+/* Lato 2.0 (OFL) — у версии с Google Fonts нет кириллицы и начертаний Medium/SemiBold.
+   Файлы урезаны до латиницы и кириллицы (~26 КБ вместо ~180 КБ). */
+@font-face {
+  font-family: 'Lato';
+  font-weight: 300;
+  font-display: swap;
+  ascent-override: 98.7%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+  src: url('/fonts/lato-light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-weight: 400;
+  font-display: swap;
+  ascent-override: 98.7%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+  src: url('/fonts/lato-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-weight: 500;
+  font-display: swap;
+  ascent-override: 98.7%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+  src: url('/fonts/lato-medium.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-weight: 600;
+  font-display: swap;
+  ascent-override: 98.7%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+  src: url('/fonts/lato-semibold.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Lato';
+  font-weight: 700;
+  font-display: swap;
+  ascent-override: 98.7%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+  src: url('/fonts/lato-bold.woff2') format('woff2');
+}
+
+/* Токены из Figma */
+@theme static {
+  --font-sans: 'Lato', ui-sans-serif, system-ui, sans-serif;
+
+  /* Размеры в px, а не в rem: макет пиксельный и не должен «плыть»
+     от базового размера шрифта в настройках браузера */
+  --spacing: 4px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+  --radius-4xl: 32px;
+  /* Радиусы из макета, у которых нет шага в шкале */
+  --radius-media: 20px; /* тёмная плитка карточки, нижнее меню */
+  --radius-tag: 22px; /* тег SKU */
+  --radius-panel: 30px; /* шапка, футер, кнопка «Подбор» */
+
+  --container-page: 1440px;
+  --spacing-gutter: 68px; /* боковое поле страницы на десктопе */
+
+  --drop-shadow-card: 0 10px 20px rgb(56 28 12 / 0.1);
+  --drop-shadow-nav: 0 10px 17.5px rgb(56 28 12 / 0.15);
+
+  --gradient-brand-hover: linear-gradient(90deg, #4a4a4c 0%, #000 100%);
+  --gradient-brand-hover-red: linear-gradient(90deg, #9b0f05 0%, #000 100%);
+
+  --color-orange: #ff6e00;
+  --color-orange-hover: #ff8526;
+  --color-grey-xxl: #2a2a2b;
+  --color-grey-xl: #5a5c5c;
+  --color-grey-l: #8b8d8e;
+  --color-grey-m: #b4b5b6;
+  --color-grey-s: #d6d7d7;
+  --color-grey-xs: #e8e8e8;
+  --color-grey-xxs: #f7f7f7;
+
+  --text-body-s: 12px;
+  --text-body-s--line-height: 14px;
+  --text-body-m: 14px;
+  --text-body-m--line-height: 18px;
+  --text-body-l: 16px;
+  --text-body-l--line-height: 20px;
+  --text-display-m: 30px;
+  --text-display-m--line-height: 36px;
+
+  --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --animate-rise-in: rise-in 0.5s var(--ease-out-soft) both;
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-grey-xxs);
+    color: var(--color-grey-xxl);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Фон карточки — белая плашка с вырезом под круглую кнопку.
+   Форма из Figma, растягивается на любую ширину через border-image (вырез — в правом нижнем срезе). */
+@utility card-shape {
+  position: absolute;
+  inset: 0;
+  border-style: solid;
+  border-width: 0;
+  border-image-source: url('/card-shape.svg');
+  border-image-slice: 24 56 56 24 fill;
+  border-image-width: 24px 56px 56px 24px;
+  transition: filter 0.35s var(--ease-out-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
