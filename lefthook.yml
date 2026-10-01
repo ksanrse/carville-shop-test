@@ -3,7 +3,7 @@ pre-commit:
   parallel: true
   commands:
     lint:
-      glob: '*.{ts,vue,mjs,json}'
+      glob: '*.{ts,vue,mjs}' # json oxlint не проверяет: без других файлов он падает с «No files found»
       run: pnpm oxlint --deny-warnings {staged_files}
     format:
       glob: '*.{ts,vue,mjs,json,css,md,yml}'

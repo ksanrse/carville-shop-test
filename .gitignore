@@ -30,3 +30,5 @@ test-results
 playwright-report
 coverage
 .vitest
+
+.vercel
