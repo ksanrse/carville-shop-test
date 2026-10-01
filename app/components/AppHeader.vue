@@ -27,7 +27,7 @@ const actions = [
             <NuxtLink
               :to="link.to"
               external
-              class="font-medium text-grey-l transition-colors hover:text-grey-xxl"
+              class="font-medium text-grey-l transition-colors hover:text-orange"
             >
               {{ link.label }}
             </NuxtLink>
@@ -61,7 +61,7 @@ const actions = [
           <NuxtLink
             to="/catalog"
             external
-            class="hidden shrink-0 items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:scale-[0.97] lg:flex"
+            class="hidden shrink-0 items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:bg-orange-pressed active:scale-[0.97] lg:flex"
           >
             <img src="/icons/catalog.svg" alt="" width="16" height="16" />
             Каталог
@@ -70,7 +70,7 @@ const actions = [
           <form
             action="/search"
             role="search"
-            class="relative flex h-10 min-w-0 flex-1 items-center gap-2 rounded-3xl border border-grey-s bg-white pl-4 transition-colors focus-within:border-grey-l"
+            class="relative flex h-10 min-w-0 flex-1 items-center gap-2 rounded-3xl border border-grey-s bg-white pl-4 transition-colors not-focus-within:hover:border-grey-l focus-within:border-orange"
           >
             <!-- Плейсхолдер разный на мобильном и десктопе, поэтому рисуем его сами -->
             <input
@@ -91,7 +91,7 @@ const actions = [
             </span>
             <button
               type="submit"
-              class="grid size-10 shrink-0 place-items-center rounded-full bg-orange transition hover:bg-orange-hover active:scale-[0.94]"
+              class="grid size-10 shrink-0 place-items-center rounded-full bg-orange transition hover:bg-orange-hover active:bg-orange-pressed active:scale-[0.94]"
               aria-label="Найти"
             >
               <img src="/icons/search.svg" alt="" width="16" height="16" />
@@ -102,7 +102,7 @@ const actions = [
         <NuxtLink
           to="/podbor"
           external
-          class="hidden shrink-0 items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:scale-[0.97] lg:flex"
+          class="hidden shrink-0 items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:bg-orange-pressed active:scale-[0.97] lg:flex"
         >
           <img src="/icons/car.svg" alt="" width="16" height="16" />
           Подобрать запчасти
@@ -115,9 +115,14 @@ const actions = [
                 :to="action.to"
                 external
                 :aria-label="action.label"
-                class="grid size-10 place-items-center rounded-full border border-grey-s bg-white/90 backdrop-blur-[2px] transition hover:border-grey-l active:scale-[0.94]"
+                class="group relative grid size-10 place-items-center rounded-full border border-grey-s bg-white/90 text-grey-xxl backdrop-blur-[2px] transition duration-200 hover:border-orange hover:text-orange active:scale-[0.94]"
               >
-                <img :src="action.icon" alt="" width="16" height="16" />
+                <!-- иконка маской, чтобы при ховере перекрашивалась вместе с рамкой -->
+                <span
+                  class="size-4 bg-current"
+                  :style="{ mask: `url(${action.icon}) center / contain no-repeat` }"
+                />
+                <span class="tooltip" aria-hidden="true">{{ action.label }}</span>
               </NuxtLink>
             </li>
           </ul>

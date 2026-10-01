@@ -82,6 +82,20 @@ test.describe('десктоп', () => {
     )
   })
 
+  test('иконки шапки: ховер красит рамку и иконку, тултип с названием', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await page.goto('/brands')
+    const cart = page.getByRole('link', { name: 'Корзина' })
+    const tooltip = cart.locator('.tooltip')
+
+    await expect(tooltip).toBeHidden()
+    await cart.hover()
+    await expect(cart).toHaveCSS('border-color', 'rgb(255, 110, 0)')
+    await expect(cart.locator('span').first()).toHaveCSS('background-color', 'rgb(255, 110, 0)')
+    await expect(tooltip).toBeVisible()
+    await expect(tooltip).toHaveText('Корзина')
+  })
+
   test('карточка ведёт на страницу бренда и обратно', async ({ page }) => {
     await page.goto('/brands')
     await cards(page).filter({ hasText: 'TRIALLI' }).click()

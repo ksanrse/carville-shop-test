@@ -53,7 +53,7 @@ useSeoMeta({
         </p>
         <NuxtLink
           to="/brands"
-          class="flex items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:scale-[0.97]"
+          class="flex items-center gap-1.5 rounded-full bg-orange px-4 py-3 text-body-m/4 font-semibold text-white transition hover:bg-orange-hover active:bg-orange-pressed active:scale-[0.97]"
         >
           Все бренды
         </NuxtLink>

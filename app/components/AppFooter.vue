@@ -84,7 +84,7 @@ function subscribe() {
             Новости и предложения
           </label>
           <div
-            class="flex h-12 items-center gap-1 rounded-3xl border border-grey-xl py-1 pr-1 pl-5 transition-colors focus-within:border-grey-l"
+            class="flex h-12 items-center gap-1 rounded-3xl border border-grey-xl py-1 pr-1 pl-5 transition-colors focus-within:border-orange"
           >
             <input
               id="newsletter-email"
@@ -97,7 +97,7 @@ function subscribe() {
             />
             <button
               type="submit"
-              class="grid size-10 shrink-0 place-items-center rounded-full bg-orange transition hover:bg-orange-hover active:scale-[0.94]"
+              class="grid size-10 shrink-0 place-items-center rounded-full bg-orange transition hover:bg-orange-hover active:bg-orange-pressed active:scale-[0.94]"
               aria-label="Подписаться"
             >
               <img src="/icons/send.svg" alt="" width="16" height="16" />

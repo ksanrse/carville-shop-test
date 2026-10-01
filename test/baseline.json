@@ -1,6 +1,6 @@
 {
   "unit": 20,
-  "e2e": 16,
+  "e2e": 17,
   "coverage": {
     "lines": 100,
     "functions": 100,
