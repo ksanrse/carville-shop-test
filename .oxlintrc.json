@@ -1,0 +1,39 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "vue", "vitest", "unicorn", "oxc"],
+  "categories": { "correctness": "error", "suspicious": "warn" },
+  "env": { "browser": true, "node": true, "es2024": true },
+  "globals": {
+    "defineNuxtConfig": "readonly",
+    "defineEventHandler": "readonly",
+    "defineSitemapEventHandler": "readonly",
+    "getSiteConfig": "readonly"
+  },
+  "ignorePatterns": [
+    ".nuxt",
+    ".output",
+    ".reports",
+    ".shots",
+    ".vitest",
+    ".data",
+    "coverage",
+    "test-results",
+    "playwright-report",
+    "public"
+  ],
+  "rules": {
+    "no-debugger": "error",
+    "vitest/no-focused-tests": "error",
+    "vitest/no-disabled-tests": "error",
+    "jest/no-focused-tests": "error",
+    "jest/no-disabled-tests": "error",
+    "jest/no-commented-out-tests": "error",
+    "vitest/valid-expect": ["error", { "maxArgs": 2 }]
+  },
+  "overrides": [
+    {
+      "files": ["test/e2e/**"],
+      "rules": { "vitest/no-focused-tests": "off", "vitest/no-disabled-tests": "off" }
+    }
+  ]
+}
