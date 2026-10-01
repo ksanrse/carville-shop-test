@@ -1,0 +1,19 @@
+# Проверки до того, как код попадёт в репозиторий. Обход (--no-verify) ловит CI — см. .github/workflows/ci.yml
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      glob: '*.{ts,vue,mjs,json}'
+      run: pnpm oxlint --deny-warnings {staged_files}
+    format:
+      glob: '*.{ts,vue,mjs,json,css,md,yml}'
+      run: pnpm oxfmt --check {staged_files}
+    secrets-and-focus:
+      glob: '*.{ts,vue}'
+      run: node scripts/check-staged.mjs {staged_files}
+
+pre-push:
+  commands:
+    verify:
+      # lint → types → unit+coverage → build → e2e → guard (число тестов и покрытие не падают)
+      run: pnpm verify
